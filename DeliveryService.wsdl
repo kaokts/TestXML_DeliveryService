@@ -1,0 +1,100 @@
+<definitions name="deliveryService"
+    targetNamespace="http://example.com/deliveryService.wsdl"
+        xmlns:tns="http://example.com/deliveryService.wsdl"
+        xmlns:xsd1="http://example.com/deliveryService.xsd"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns="http://schemas.xmlsoap.org/wsdl/">
+    <types>
+        <schema targetNamespace="http://example.com/deliveryService.xsd"
+                xmlns="http://www.w3.org/2000/10/XMLSchema">    
+        </schema>
+    </types>
+
+    <message name="CheckWarehouseInput">
+        <part name="body" element="xsd1:CheckWarehouseRequest"/>
+    </message>
+    <message name="CheckWarehouseOutput">
+        <part name="body" element="xsd1:CheckWarehouse"/>
+    </message>
+    <message name="CheckDistributorInput">
+        <part name="body" element="xsd1:CheckDistributorRequest"/>
+    </message>
+    <message name="CheckDistributorOutput">
+        <part name="body" element="xsd1:CheckDistributor"/>
+    </message>
+    <message name="RecordCarrierInput">
+        <part name="body" element="xsd1:RecordCarrierRequest"/>
+    </message>
+    <message name="RecordCarrierOutput">
+        <part name="body" element="xsd1:RecordCarrier"/>
+    </message>
+    <message name="CheckDeliveryStatusInput">
+        <part name="body" element="xsd1:CheckDeliveryStatusRequest"/>
+    </message>
+    <message name="CheckDeliveryStatusOutput">
+        <part name="body" element="xsd1:CheckDeliveryStatus"/>
+    </message>
+
+    <portType name="DeliveryServicePortType">
+        <operation name="CheckWarehouse">
+            <input message="tns:CheckWarehouseInput"/>
+            <output message="tns:CheckWarehouseOutput"/>
+        </operation>
+        <operation name="CheckDistributor">
+            <input message="tns:CheckDistributorInput"/>
+            <output message="tns:CheckDistributorOutput"/>
+        </operation>
+        <operation name="RecordCarrier">
+            <input message="tns:RecordCarrierInput"/>
+            <output message="tns:RecordCarrierOutput"/>
+        </operation>
+        <operation name="CheckDeliveryStatus">
+            <input message="tns:CheckDeliveryStatusInput"/>
+            <output message="tns:CheckDeliveryStatusOutput"/>
+        </operation>
+    </portType>   
+
+    <binding name="DeliverySoapBinding" type="tns:DeliveryServicePortType">
+        <soap:binding style="document"
+                transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="CheckWarehouse">
+            <soap:operation
+                    soapAction="http://example.com/CheckWarehouse"/>
+                <input> <soap:body use="literal" />
+                </input>
+                <output> <soap:body use="literal" />
+                </output>
+        </operation>
+        <operation name="CheckDistributor">
+            <soap:operation
+                    soapAction="http://example.com/CheckDistributor"/>
+                <input> <soap:body use="literal" />
+                </input>
+                <output> <soap:body use="literal" />
+                </output>
+        </operation>
+        <operation name="RecordCarrier">
+            <soap:operation
+                    soapAction="http://example.com/RecordCarrier"/>
+                <input> <soap:body use="literal" />
+                </input>
+                <output> <soap:body use="literal" />
+                </output>
+        </operation>
+        <operation name="CheckDeliveryStatus">
+            <soap:operation
+                    soapAction="http://example.com/CheckDeliveryStatus"/>
+                <input> <soap:body use="literal" />
+                </input>
+                <output> <soap:body use="literal" />
+                </output>
+        </operation>
+    </binding>
+
+    <service name=" DeliveryService">
+        <documentation>My thrid service</documentation>
+        <port name="DeliveryServicePortType" binding="tns:DeliverySoapBinding">
+            <soap:address location="http://example.com/deliveryService"/>
+        </port>
+    </service>
+</definitions>
